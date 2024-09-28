@@ -1,16 +1,13 @@
 const DotenvWebpackPlugin = require('dotenv-webpack');
-const { watch } = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   entry: './src/index.ts',
-  // devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        // test: /\.tsx?$/,
-        test: /\.ts?$/, // место .tsx поставил .ts ушла ошибка module not found
+        test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
@@ -19,18 +16,9 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
-    // exports: {
-    //   watch: true,
-    //   watchOptions: {
-    //     aggregateTimeout: 600,
-    //     ignored: /node_modules/,
-    //   },
-    // },
   },
   resolve: {
-    // extensions: '["ts", ".tsx", ".js"]',
     extensions: ['.ts', '.tsx', '.js'],
-    // modules: ['node_modules', 'src'],
   },
   output: {
     filename: 'bundle.js',
